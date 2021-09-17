@@ -29,7 +29,7 @@ func main() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
-	projectID := os.Getenv("TOPIC_ID")
+	projectID := os.Getenv("PROJECT_ID")
 	topicID := os.Getenv("TOPIC_ID")
 
 	go func() {
