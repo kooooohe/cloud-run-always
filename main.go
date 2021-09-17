@@ -29,7 +29,8 @@ func main() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
-	projectID := "midyear-spot-304113"
+	projectID := "PROJECT_ID"
+	topicID := os.Getenv("TOPIC_ID")
 
 	go func() {
 		client, err := pubsub.NewClient(ctx, projectID)
@@ -40,7 +41,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		defer client.Close()
 		for i := 0; i < 1000; i++ {
 			time.Sleep(time.Minute * 1)
-			topicID := "test"
 
 			topic := client.Topic(topicID)
 			// topic, err := client.CreateTopic(ctx, topicID)
