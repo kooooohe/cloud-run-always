@@ -40,7 +40,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 		defer client.Close()
 		for i := 0; i < 1000; i++ {
-			time.Sleep(time.Minute * 1)
 
 			topic := client.Topic(topicID)
 			// topic, err := client.CreateTopic(ctx, topicID)
@@ -57,6 +56,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				log.Fatal(err)
 			}
 			fmt.Println(msgID)
+			time.Sleep(time.Second * 1)
 		}
 	}()
 
