@@ -26,8 +26,15 @@ func main() {
 	// if err != nil {
 	// 	log.Fatalf("Faild to create client %v", err)
 	// }
-	topic.Publish(ctx, &pubsub.Message{
+	res := topic.Publish(ctx, &pubsub.Message{
 		Data: []byte("hello world"),
 	})
-	fmt.Printf("%v", topic)
+	fmt.Printf("%v\n", topic)
+	fmt.Printf("%v\n", res)
+	msgID, err := res.Get(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(msgID)
 }
+
