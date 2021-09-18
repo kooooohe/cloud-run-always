@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"time"
 
 	"cloud.google.com/go/pubsub"
 	"net/http"
@@ -43,7 +42,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		defer client.Close()
-		for i := 0; i < 1000; i++ {
+		for i := 0; i < 30000; i++ {
 
 			topic := client.Topic(topicID)
 			// topic, err := client.CreateTopic(ctx, topicID)
@@ -60,7 +59,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				log.Fatal(err)
 			}
 			fmt.Println(msgID)
-			time.Sleep(time.Second * 1)
 		}
 	}()
 
